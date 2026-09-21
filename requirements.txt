@@ -1,0 +1,17 @@
+beautifulsoup4
+requests
+mysql-connector-python
+pandas
+seaborn
+matplotlib
+scikit-learn
+imbalanced-learn
+joblib
+sentence-transformers
+chromadb
+langgraph
+fastapi
+uvicorn
+groq
+httpx
+python-dotenv
