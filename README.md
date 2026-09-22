@@ -32,6 +32,11 @@ build — see below); for local development the root `requirements.txt` already 
 ```bash
 python3 data_pipeline/pipeline.py
 ```
+or
+
+```bash
+python data_pipeline/pipeline.py
+```
 
 Scrapes books.toscrape.com, builds `data_pipeline/database/books.db`, and runs the 5 queries in
 `data_pipeline/resources/queries.json`, logging their output to
