@@ -1,0 +1,463 @@
+[
+  {
+    "name": "select_where",
+    "query": "SELECT title, rating, price_inr FROM books WHERE rating >= 4",
+    "output": [
+      [
+        "Full Moon over Noah\u2019s Ark: An Odyssey to Mount Ararat and Beyond",
+        4,
+        5214.865
+      ],
+      [
+        "A Year in Provence (Provence #1)",
+        4,
+        6000.84
+      ],
+      [
+        "1,000 Places to See Before You Die",
+        5,
+        2751.4399999999996
+      ],
+      [
+        "Sharp Objects",
+        4,
+        5045.01
+      ],
+      [
+        "The Past Never Ends",
+        4,
+        5960.75
+      ],
+      [
+        "The Murder of Roger Ackroyd (Hercule Poirot #4)",
+        4,
+        4652.55
+      ],
+      [
+        "A Time of Torment (Charlie Parker #14)",
+        5,
+        5100.925
+      ],
+      [
+        "Murder at the 42nd Street Library (Raymond Ambler #1)",
+        4,
+        5734.98
+      ],
+      [
+        "What Happened on Beale Street (Secrets of the South Mysteries #2)",
+        5,
+        2676.5350000000003
+      ],
+      [
+        "The Bachelor Girl's Guide to Murder (Herringford and Watts Mysteries #1)",
+        5,
+        5517.65
+      ],
+      [
+        "Delivering the Truth (Quaker Midwife Mystery #1)",
+        4,
+        2203.895
+      ],
+      [
+        "A Flight of Arrows (The Pathfinders #2)",
+        5,
+        5858.415
+      ],
+      [
+        "Mrs. Houdini",
+        5,
+        3191.375
+      ],
+      [
+        "The Marriage of Opposites",
+        4,
+        2962.4399999999996
+      ],
+      [
+        "A Paris Apartment",
+        4,
+        4115.554999999999
+      ],
+      [
+        "World Without End (The Pillars of the Earth #2)",
+        4,
+        3478.335
+      ],
+      [
+        "The Passion of Dolssa",
+        5,
+        2987.76
+      ],
+      [
+        "Voyager (Outlander #3)",
+        5,
+        2222.885
+      ],
+      [
+        "The Red Tent",
+        5,
+        3762.1299999999997
+      ],
+      [
+        "Scott Pilgrim's Precious Little Life (Scott Pilgrim #1)",
+        5,
+        5516.595
+      ],
+      [
+        "This One Summer",
+        4,
+        2056.1949999999997
+      ],
+      [
+        "The Nameless City (The Nameless City #1)",
+        4,
+        4025.8799999999997
+      ],
+      [
+        "Princess Jellyfish 2-in-1 Omnibus, Vol. 01 (Princess Jellyfish 2-in-1 Omnibus #1)",
+        5,
+        1435.855
+      ],
+      [
+        "Outcast, Vol. 1: A Darkness Surrounds Him (Outcast #1)",
+        4,
+        1628.9199999999998
+      ],
+      [
+        "Danganronpa Volume 1",
+        4,
+        5484.945000000001
+      ],
+      [
+        "Codename Baboushka, Volume 1: The Conclave of Death",
+        4,
+        3873.96
+      ],
+      [
+        "Camp Midnight",
+        4,
+        1801.9399999999998
+      ]
+    ]
+  },
+  {
+    "name": "order_by_limit",
+    "query": "SELECT title, price_inr FROM books ORDER BY price_inr DESC LIMIT 5",
+    "output": [
+      [
+        "Boar Island (Anna Pigeon #19)",
+        6275.139999999999
+      ],
+      [
+        "A Year in Provence (Provence #1)",
+        6000.84
+      ],
+      [
+        "The Past Never Ends",
+        5960.75
+      ],
+      [
+        "The Last Painting of Sara de Vos",
+        5860.525
+      ],
+      [
+        "A Flight of Arrows (The Pathfinders #2)",
+        5858.415
+      ]
+    ]
+  },
+  {
+    "name": "distinct",
+    "query": "SELECT DISTINCT category_name FROM categories",
+    "output": [
+      [
+        "Travel"
+      ],
+      [
+        "Mystery"
+      ],
+      [
+        "Historical Fiction"
+      ],
+      [
+        "Sequential Art"
+      ]
+    ]
+  },
+  {
+    "name": "between",
+    "query": "SELECT title, price_inr FROM books WHERE price_inr BETWEEN 500 AND 1500",
+    "output": [
+      [
+        "That Darkness (Gardiner and Renner #1)",
+        1468.56
+      ],
+      [
+        "Tastes Like Fear (DI Marnie Rome #3)",
+        1127.7949999999998
+      ],
+      [
+        "Hide Away (Eve Duncan #20)",
+        1249.12
+      ],
+      [
+        "Playing with Fire",
+        1446.4050000000002
+      ],
+      [
+        "Princess Jellyfish 2-in-1 Omnibus, Vol. 01 (Princess Jellyfish 2-in-1 Omnibus #1)",
+        1435.855
+      ],
+      [
+        "Patience",
+        1071.88
+      ]
+    ]
+  },
+  {
+    "name": "join_top_rated_per_category",
+    "query": "SELECT category_name, title, rating, price_inr FROM (SELECT c.category_name AS category_name, b.title AS title, b.rating AS rating, b.price_inr AS price_inr, ROW_NUMBER() OVER (PARTITION BY c.category_id ORDER BY b.rating DESC, b.price_inr ASC) AS rank FROM books b JOIN categories c ON b.category_id = c.category_id) WHERE rank <= 10 ORDER BY category_name, rank",
+    "output": [
+      [
+        "Historical Fiction",
+        "Voyager (Outlander #3)",
+        5,
+        2222.885
+      ],
+      [
+        "Historical Fiction",
+        "The Passion of Dolssa",
+        5,
+        2987.76
+      ],
+      [
+        "Historical Fiction",
+        "Mrs. Houdini",
+        5,
+        3191.375
+      ],
+      [
+        "Historical Fiction",
+        "The Red Tent",
+        5,
+        3762.1299999999997
+      ],
+      [
+        "Historical Fiction",
+        "A Flight of Arrows (The Pathfinders #2)",
+        5,
+        5858.415
+      ],
+      [
+        "Historical Fiction",
+        "The Marriage of Opposites",
+        4,
+        2962.4399999999996
+      ],
+      [
+        "Historical Fiction",
+        "World Without End (The Pillars of the Earth #2)",
+        4,
+        3478.335
+      ],
+      [
+        "Historical Fiction",
+        "A Paris Apartment",
+        4,
+        4115.554999999999
+      ],
+      [
+        "Historical Fiction",
+        "The Constant Princess (The Tudor Court #1)",
+        3,
+        1753.41
+      ],
+      [
+        "Historical Fiction",
+        "Forever and Forever: The Courtship of Henry Longfellow and Fanny Appleton",
+        3,
+        3132.295
+      ],
+      [
+        "Mystery",
+        "What Happened on Beale Street (Secrets of the South Mysteries #2)",
+        5,
+        2676.5350000000003
+      ],
+      [
+        "Mystery",
+        "A Time of Torment (Charlie Parker #14)",
+        5,
+        5100.925
+      ],
+      [
+        "Mystery",
+        "The Bachelor Girl's Guide to Murder (Herringford and Watts Mysteries #1)",
+        5,
+        5517.65
+      ],
+      [
+        "Mystery",
+        "Delivering the Truth (Quaker Midwife Mystery #1)",
+        4,
+        2203.895
+      ],
+      [
+        "Mystery",
+        "The Murder of Roger Ackroyd (Hercule Poirot #4)",
+        4,
+        4652.55
+      ],
+      [
+        "Mystery",
+        "Sharp Objects",
+        4,
+        5045.01
+      ],
+      [
+        "Mystery",
+        "Murder at the 42nd Street Library (Raymond Ambler #1)",
+        4,
+        5734.98
+      ],
+      [
+        "Mystery",
+        "The Past Never Ends",
+        4,
+        5960.75
+      ],
+      [
+        "Mystery",
+        "Playing with Fire",
+        3,
+        1446.4050000000002
+      ],
+      [
+        "Mystery",
+        "Poisonous (Max Revere Novels #3)",
+        3,
+        2827.4
+      ],
+      [
+        "Sequential Art",
+        "Princess Jellyfish 2-in-1 Omnibus, Vol. 01 (Princess Jellyfish 2-in-1 Omnibus #1)",
+        5,
+        1435.855
+      ],
+      [
+        "Sequential Art",
+        "Scott Pilgrim's Precious Little Life (Scott Pilgrim #1)",
+        5,
+        5516.595
+      ],
+      [
+        "Sequential Art",
+        "Outcast, Vol. 1: A Darkness Surrounds Him (Outcast #1)",
+        4,
+        1628.9199999999998
+      ],
+      [
+        "Sequential Art",
+        "Camp Midnight",
+        4,
+        1801.9399999999998
+      ],
+      [
+        "Sequential Art",
+        "This One Summer",
+        4,
+        2056.1949999999997
+      ],
+      [
+        "Sequential Art",
+        "Codename Baboushka, Volume 1: The Conclave of Death",
+        4,
+        3873.96
+      ],
+      [
+        "Sequential Art",
+        "The Nameless City (The Nameless City #1)",
+        4,
+        4025.8799999999997
+      ],
+      [
+        "Sequential Art",
+        "Danganronpa Volume 1",
+        4,
+        5484.945000000001
+      ],
+      [
+        "Sequential Art",
+        "Patience",
+        3,
+        1071.88
+      ],
+      [
+        "Sequential Art",
+        "Lumberjanes, Vol. 1: Beware the Kitten Holy (Lumberjanes #1-4)",
+        3,
+        4811.855
+      ],
+      [
+        "Travel",
+        "1,000 Places to See Before You Die",
+        5,
+        2751.4399999999996
+      ],
+      [
+        "Travel",
+        "Full Moon over Noah\u2019s Ark: An Odyssey to Mount Ararat and Beyond",
+        4,
+        5214.865
+      ],
+      [
+        "Travel",
+        "A Year in Provence (Provence #1)",
+        4,
+        6000.84
+      ],
+      [
+        "Travel",
+        "Under the Tuscan Sun",
+        3,
+        3938.3149999999996
+      ],
+      [
+        "Travel",
+        "Neither Here nor There: Travels in Europe",
+        3,
+        4109.225
+      ],
+      [
+        "Travel",
+        "See America: A Celebration of Our National Parks & Treasured Sites",
+        3,
+        5155.785
+      ],
+      [
+        "Travel",
+        "Vagabonding: An Uncommon Guide to the Art of Long-Term World Travel",
+        2,
+        3897.1699999999996
+      ],
+      [
+        "Travel",
+        "A Summer In Europe",
+        2,
+        4677.870000000001
+      ],
+      [
+        "Travel",
+        "It's Only the Himalayas",
+        2,
+        4765.435
+      ],
+      [
+        "Travel",
+        "The Road to Little Dribbling: Adventures of an American in Britain (Notes From a Small Island #2)",
+        1,
+        2448.655
+      ]
+    ]
+  }
+]
