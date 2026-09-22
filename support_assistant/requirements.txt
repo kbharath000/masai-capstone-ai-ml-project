@@ -1,0 +1,8 @@
+sentence-transformers
+chromadb
+langgraph
+fastapi
+uvicorn
+groq
+httpx
+python-dotenv

@@ -1,0 +1,9 @@
+Dockerfile
+.dockerignore
+README.md
+requirements.txt
+chroma_db/
+__pycache__/
+**/__pycache__/
+**/*.pyc
+.env
