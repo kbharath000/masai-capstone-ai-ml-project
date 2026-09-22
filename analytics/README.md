@@ -33,13 +33,6 @@ From the repo root, with the project's dependencies installed (`pandas`, `seabor
 ever deleted. Everything below was produced by running both commands above end to end just
 now, from this exact code and this exact committed CSV.
 
-**Note on a bug fixed while moving this module:** `predictive_modelling.py` used to import
-`Pipeline` from `imblearn.pipeline` and then immediately re-import it from `sklearn.pipeline`,
-silently shadowing the first with a version that can't accept SMOTE's resampling step —
-`compare_imbalance_handling` crashed as soon as it built the SMOTE pipeline. `imblearn.pipeline.Pipeline`
-is a drop-in superset that also works for the plain sklearn pipelines used everywhere else in
-this file, so the fix was simply removing the duplicate `sklearn.pipeline` import. Every number
-below is from that fixed version actually running successfully end to end.
 
 ## EDA: written interpretation
 
