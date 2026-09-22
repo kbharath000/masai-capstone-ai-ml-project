@@ -46,7 +46,7 @@ outside [2.50, 54.50] years. Fare: 114 outlier points outside [-26.76, 65.66]. F
 tendency: mean $32.10 > median $14.45 > mode $8.05 — the classic signature of a heavily
 right-skewed distribution (a long tail of expensive fares pulling the mean well above the
 median and mode).
-![Univariate Analysis](..\analytics\univariate_analysis.png)
+![Univariate Analysis](../analytics/1_survival_by_sex.png)
 
 
 **Bivariate — survival by sex and class.** Female survival (74.04%) was nearly 4x male
@@ -60,22 +60,22 @@ dominant factor, with class acting as a strong secondary multiplier within each 
 (|r| ≈ 0.415, positive — passengers with siblings/spouses aboard tended to also have
 parents/children aboard, i.e. they traveled as family units).
 
-![corre_matrix_heat_map](..\analytics\corre_matrix_heat_map.png)
+![corre_matrix_heat_map](../analytics/corre_matrix_heat_map.png)
 
 **Multivariate — the four charts** (`1_survival_by_sex.png` .. `4_fare_vs_age_scatter.png`):
-chart 1 restates the sex gap as a bar chart ![1_survival_by_sex](..\analytics\1_survival_by_sex.png) 
+chart 1 restates the sex gap as a bar chart ![1_survival_by_sex](../analytics/1_survival_by_sex.png) 
 
 chart 2's heatmap shows the class x sex interaction from above visually
-![2_survival_heatmap](..\analytics\2_survival_heatmap.png)
+![2_survival_heatmap](../analytics/2_survival_heatmap.png)
 
 chart 3 shows survivors and non-survivors have a similar median age (~29) but survivors skew slightly younger overall, consistent with a "children
 first" effect at the lower tail; 
 
-![3_age_distribution_box](..\analytics\3_age_distribution_box.png)
+![3_age_distribution_box](../analytics/3_age_distribution_box.png)
 
 chart 4 (fare vs. age, log-scaled fare, colored by survival) shows high-fare passengers survived almost regardless of age, while the low-fare/older cluster at the bottom-right is where casualties concentrate most heavily.
 
-![4_fare_vs_age_scatter](..\analytics\4_fare_vs_age_scatter.png)
+![4_fare_vs_age_scatter](../analytics/4_fare_vs_age_scatter.png)
 
 **Standardization check.** Z-scoring `age` and `fare` moves both to mean 0.0 / std 1.0 exactly
 by construction — included as a sanity check that the transform was applied correctly, not as
