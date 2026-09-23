@@ -29,8 +29,8 @@ DOCS_DIR = Path(__file__).parent / "docs"
 CHROMA_DIR = Path(__file__).parent / "chroma_db"
 COLLECTION_NAME = "support_docs"
 EMBEDDING_MODEL_NAME = str(Path(__file__).parent / "models" / "all-MiniLM-L6-v2")
-CHUNK_SIZE = 800
-CHUNK_OVERLAP = 100
+CHUNK_SIZE = 50
+CHUNK_OVERLAP = 20
 
 MOCK_LLM = os.environ.get("MOCK_LLM", "1") != "0"
 LLM_MODEL_NAME = "llama-3.3-70b-versatile"
