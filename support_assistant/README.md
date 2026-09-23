@@ -20,8 +20,8 @@ template, graph routing, and the FastAPI endpoint).
 
 **1. Ingestion.** `SupportKnowledgeBase._load_documents()` reads all 8 `.txt` files from
 `support_assistant/docs/`, one `(doc_id, text)` pair per file. `SupportKnowledgeBase._chunk_text()`
-then chunks each doc: every doc here is well under `CHUNK_SIZE` (800 chars), so each becomes
-exactly one chunk; a longer doc would instead fall back to fixed-size slices with a 100-char
+then chunks each doc: every doc here is well under `CHUNK_SIZE` (50 chars), so each becomes
+exactly one chunk; a longer doc would instead fall back to fixed-size slices with a 20-char
 overlap (`CHUNK_OVERLAP`). Each chunk gets an id of the form `f"{doc_id}_chunk_{i}"` (e.g.
 `doc_07_chunk_0`).
 
